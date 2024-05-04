@@ -1,0 +1,8 @@
+ALTER TABLE produto
+ADD tipo_produto VARCHAR(30);
+
+ALTER TABLE produto
+ADD COLUMN imagem_produto VARCHAR(250) DEFAULT 'https://images.tcdn.com.br/img/img_prod/974770/copia_produto_de_teste_175_1_a8c253c76fc4bf35b674f8830926bc72.jpg';
+
+ALTER TABLE produto
+ADD COLUMN principal_produto char(1) DEFAULT 'N';
