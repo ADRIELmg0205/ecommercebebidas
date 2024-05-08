@@ -36,22 +36,23 @@ export default function Produtos({ apiUrl }: Props) {
     }, [apiUrl]); // Certifique-se de adicionar apiUrl como dependência
 
     return (
-        <div className="flex flex-col items-center rounded-md border border-zinc-500 h-80 w-56 ">
-           
-                <h2 className="text-lg text-center font-semibold p-4">Veio Barreiro</h2>
-            
-            <Image
-                src={veibarrero}
-                height={50} width={50}
-                alt={"veibarrero.png"}
-                className="" />
-            <span className="flex justify-between text-center p-4">R$19,99 </span>
-            <span className="text-xs">Aguardente Velho Barreiro 980ml</span>
-            <button className={`
-                 bg-blue-500 h-7 w-3/4 border-none text-white 
-                text-base font-bold roudend-md mt-2
-            `}>Saiba Mais</button>
-
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+            {produtos.map(produto => (
+                <div key={produto.id_produto} className="flex flex-col items-center rounded-md border border-zinc-500 h-80 w-56">
+                    <h2 className="text-lg text-center font-semibold p-4">{produto.nome_produto}</h2>
+                    <Image
+                        src={produto.imagem_produto} // Altere aqui para o link da imagem do produto
+                        height={100} width={100} // Ajuste o tamanho conforme necessário
+                        alt={produto.nome_produto} // Use o nome do produto como alt
+                        className="" />
+                    <span className="flex justify-between text-center p-4">R${produto.preco_produto}</span>
+                    <span className="text-xs">{produto.descricao_produto}</span>
+                    <button className={`
+                        bg-blue-500 h-7 w-3/4 border-none text-white 
+                        text-base font-bold rounded-md mt-2
+                    `}>Saiba Mais</button>
+                </div>
+            ))}
         </div>
     );
 }
