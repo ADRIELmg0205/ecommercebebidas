@@ -50,7 +50,7 @@ export default function Produtos({ apiUrl }: Props) {
                     <button className={`
                         bg-blue-500 h-7 w-3/4 border-none text-white 
                         text-base font-bold rounded-md mt-2
-                    `}>Saiba Mais</button>
+                    `}>Comprar</button>
                 </div>
             ))}
         </div>

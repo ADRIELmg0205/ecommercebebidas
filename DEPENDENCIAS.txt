@@ -1,0 +1,7 @@
+npm install lucide-react
+
+npm install @clerk/nextjs
+
+npm install prisma
+
+npx prisma init

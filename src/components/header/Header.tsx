@@ -5,6 +5,9 @@ import Carrinho from "../../images/Carrinho.png"
 import { BiCaretDown } from 'react-icons/bi'
 import { HiOutlineSearch } from 'react-icons/hi'
 import { SlLocationPin } from 'react-icons/sl'
+import { SignInButton, SignedIn, SignedOut } from '@clerk/nextjs'
+import Link from 'next/link';
+import { UserButton } from "@clerk/nextjs";
 
 
 
@@ -39,10 +42,27 @@ export default function Header() {
                 <div className="text-sm text-white-100 flex flex-col justify-center px-2 border border-transparent hover:border-white cursor-pointer duration-300 h-[95%]">
                     <p className="text-white font-bold items-center"> Conta </p>
                 </div>
+       
+                <button className="flex items-center px-2 border border-transparent hover:border-white cursor-pointer duration-300 h-[95%] relative">
+                    <Link href="/carrinho">
+                        <div>
+                            <Image className="w-auto object-cover h-8" src={Carrinho} alt="Carrinho" />
+                            
+                        </div>
+                    </Link>
+                </button>
 
-                <div className="flex items-center px-2 border border-transparent hover:border-white cursor-pointer duration-300 h-[95%] relative">
-                    <Image className="w-auto object-cover h-8" src={Carrinho} alt="Carrinho" />
-                    <p className="text-sm text-white font-bold "> Carrinho </p>
+                <div className='flex items-center gap-8'>
+                    <SignedIn>
+                        <UserButton></UserButton>
+                    </SignedIn>
+                    <SignedOut>
+                        <SignInButton mode='modal'>
+                        <button className='text-sm text-white flex flex-col justify-center px-2 border border-transparent hover:border-white cursor-pointer duration-300 h-[95%] rounded-md border-gray-400 px-3 py-2 '>
+                                Fazer Login
+                            </button>
+                        </SignInButton>
+                    </SignedOut>
                 </div>
 
             </div>
