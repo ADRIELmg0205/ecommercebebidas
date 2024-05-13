@@ -5,9 +5,8 @@ import Carrinho from "../../images/Carrinho.png"
 import { BiCaretDown } from 'react-icons/bi'
 import { HiOutlineSearch } from 'react-icons/hi'
 import { SlLocationPin } from 'react-icons/sl'
-import { SignInButton, SignedIn, SignedOut } from '@clerk/nextjs'
+import { SignInButton, SignedIn, SignedOut , UserButton } from '@clerk/nextjs'
 import Link from 'next/link';
-import { UserButton } from "@clerk/nextjs";
 
 
 
@@ -54,13 +53,16 @@ export default function Header() {
 
                 <div className='flex items-center gap-8'>
                     <SignedIn>
-                        <UserButton></UserButton>
+                        <div className="relative">
+                            <div className="absolute top-0 left-0 w-full h-full bg-white rounded-full"></div>
+                            <UserButton showName={true} ></UserButton>
+                        </div>
                     </SignedIn>
                     <SignedOut>
                         <SignInButton mode='modal'>
                         <button className='text-sm text-white flex flex-col justify-center px-2 border border-transparent hover:border-white cursor-pointer duration-300 h-[95%] rounded-md border-gray-400 px-3 py-2 '>
-                                Fazer Login
-                            </button>
+                            Fazer Login
+                        </button>
                         </SignInButton>
                     </SignedOut>
                 </div>
