@@ -3,7 +3,7 @@ import { NextResponse } from 'next/server';
 
 export async function GET(request: Request){
     try{
-        const result = await sql`SELECT * FROM produto WHERE principal_produto = 'S';`;//substituir pelo comando que desejar, pode criar campos, tabelas, consultas...
+        const result = await sql`SELECT * FROM produto where id_produto = 13;`;//substituir pelo comando que desejar, pode criar campos, tabelas, consultas...
         
         return NextResponse.json({ result }, { status: 200 });
     } catch (error) {

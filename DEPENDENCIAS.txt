@@ -5,3 +5,11 @@ npm install @clerk/nextjs
 npm install prisma
 
 npx prisma init
+
+npm install axios
+
+npm install @types/axios --save-dev
+
+npm install pg
+
+npm install @types/pg --save-dev

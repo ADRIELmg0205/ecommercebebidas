@@ -7,6 +7,7 @@ import Resumo from "@/components/carrinho/Resumo";
 import TableCart from "@/components/carrinho/TableCart";
 import Cart from "@/components/carrinho/Cart";
 import { ClerkProvider } from "@clerk/nextjs";
+import Link from 'next/link';
 
 
 const inter = Inter({ subsets: ["latin"] });
@@ -42,6 +43,8 @@ export default function Home() {
           <Produtos apiUrl="/api/vodkas" />
       </div>
 
+
+      
 
     </main>
   );
