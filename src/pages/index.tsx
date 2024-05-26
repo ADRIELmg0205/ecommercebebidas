@@ -43,9 +43,6 @@ export default function Home() {
           <Produtos apiUrl="/api/vodkas" />
       </div>
 
-
-      
-
     </main>
   );
 }
