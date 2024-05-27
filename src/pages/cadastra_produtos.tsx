@@ -73,7 +73,7 @@ const Home = () => {
         </Link>
       </div>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 flex justify-center flex-wrap gap-4 mx-auto max-w-screen-2xl ">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 flex justify-center flex-wrap gap-4 mx-auto max-w-screen-2xl ">
         {filteredProdutos.map(produto => (
           <div key={produto.id_produto} className="flex flex-col items-center rounded-md border border-zinc-500 h-80 w-56">
             <h2 className="text-lg text-center font-semibold p-4">{produto.nome_produto}</h2>
