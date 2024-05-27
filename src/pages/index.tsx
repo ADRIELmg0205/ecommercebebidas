@@ -1,48 +1,28 @@
-import Image from "next/image";
-import { Inter } from "next/font/google";
+import { useState } from 'react';
 import Header from "@/components/header/Header";
 import BottomHeader from "@/components/header/BottomHeader";
 import Produtos from "@/components/body/Produtos";
-import Resumo from "@/components/carrinho/Resumo";
-import TableCart from "@/components/carrinho/TableCart";
-import Cart from "@/components/carrinho/Cart";
-import { ClerkProvider } from "@clerk/nextjs";
-import Link from 'next/link';
-
-
-const inter = Inter({ subsets: ["latin"] });
 
 export default function Home() {
+  const [searchTerm, setSearchTerm] = useState<string>('');
+  const [category, setCategory] = useState<string>('todos');
+
+  const resetFilters = () => {
+    setSearchTerm('');
+    setCategory('todos');
+  };
+
   return (
     <main>
-      <Header/>
-      <BottomHeader></BottomHeader>
+      <Header searchTerm={searchTerm} setSearchTerm={setSearchTerm} resetFilters={resetFilters} />
+      <BottomHeader setCategory={setCategory} />
       
-      <br></br>
-      <h1 id="Geral" className="flex justify-center flex-wrap gap-4 mx-auto max-w-screen-2xl text-2xl font-bold text-Azul ">GERAL</h1>
-      <div className="flex justify-center flex-wrap gap-4 mx-auto max-w-screen-2xl ">
-        <Produtos apiUrl="/api/Geral" />
+      <br />
+      <h1 id="Geral" className="flex justify-center flex-wrap gap-4 mx-auto max-w-screen-2xl text-2xl font-bold text-Azul">GERAL</h1>
+      <div className="flex justify-center flex-wrap gap-4 mx-auto max-w-screen-2xl">
+        <Produtos searchTerm={searchTerm} category={category} />
       </div>
-      <br></br>
-
-      <section id="cervejas">
-      <h1 id="#Cervejas" className="flex justify-center flex-wrap gap-4 mx-auto max-w-screen-2xl text-2xl font-bold text-Azul">CERVEJAS</h1>
-      <div className="flex justify-center flex-wrap gap-4 mx-auto max-w-screen-2xl ">
-      <Produtos apiUrl="/api/cervejas" />
-      </div>
-      <br></br>
-      </section>
-
-      <h1 id="whiskys" className="flex justify-center flex-wrap gap-4 mx-auto max-w-screen-2xl text-2xl font-bold text-Azul">WHISKY</h1>
-      <div className="flex justify-center flex-wrap gap-4 mx-auto max-w-screen-2xl ">
-          <Produtos apiUrl="/api/whisky" />
-      </div>
-
-      <h1 id="vodkas" className="flex justify-center flex-wrap gap-4 mx-auto max-w-screen-2xl text-2xl font-bold text-Azul">VODKAS</h1>
-      <div className="flex justify-center flex-wrap gap-4 mx-auto max-w-screen-2xl ">
-          <Produtos apiUrl="/api/vodkas" />
-      </div>
-
+      <br />
     </main>
   );
 }

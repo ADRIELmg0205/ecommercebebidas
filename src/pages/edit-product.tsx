@@ -50,7 +50,7 @@ const EditProduct = () => {
 
   return (
     <div>
-      <Header />
+      
       <div className="flex justify-center items-center h-screen bg-gray-100">
         <div className="bg-white p-8 rounded shadow-md w-full max-w-lg">
           <h1 className="text-2xl font-bold mb-6 text-center">Editar Produto</h1>

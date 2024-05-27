@@ -17,8 +17,15 @@ interface Produto {
 
 const Home = () => {
   const [produtos, setProdutos] = useState<Produto[]>([]);
+  const [searchTerm, setSearchTerm] = useState<string>('');
   const [produtoToDelete, setProdutoToDelete] = useState<number | null>(null);
   const router = useRouter();
+  const [category, setCategory] = useState<string>('todos');
+  const resetFilters = () => {
+    setSearchTerm('');
+    setCategory('todos');
+  };
+
 
   useEffect(() => {
     const fetchProdutos = async () => {
@@ -37,9 +44,8 @@ const Home = () => {
     if (produtoToDelete !== null) {
       try {
         await axios.delete(`/api/produtos/${produtoToDelete}`);
-        // Atualiza a lista de produtos após a exclusão
         setProdutos(produtos.filter(produto => produto.id_produto !== produtoToDelete));
-        setProdutoToDelete(null); // Limpa o ID do produto a ser deletado
+        setProdutoToDelete(null);
       } catch (error) {
         console.error('Erro ao deletar produto:', error);
       }
@@ -50,26 +56,31 @@ const Home = () => {
     router.push(`/edit-product?id=${id}`);
   };
 
+  const filteredProdutos = produtos.filter(produto =>
+    produto.nome_produto.toLowerCase().includes(searchTerm.toLowerCase()) ||
+    produto.descricao_produto.toLowerCase().includes(searchTerm.toLowerCase())
+  );
+
   return (
     <main>
-      <Header></Header>
+      <Header searchTerm={searchTerm} setSearchTerm={setSearchTerm} resetFilters={resetFilters} />
       <div><h1 className="flex justify-center flex-wrap gap-4 mx-auto max-w-screen-2xl text-2xl font-bold text-Azul ">LISTA DE PRODUTOS</h1></div>
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 flex justify-center flex-wrap gap-4 mx-auto max-w-screen-2xl ">
-      <Link href="/new-product">
-        <button className='text-sm flex flex-col justify-center px-2 border border-gary hover:border-black cursor-pointer duration-300 h-[95%] rounded-md border-gray-400 px-3 py-2 '>
-          Adicionar Novo Produto
-        </button> 
-      </Link> 
+      <div className="flex justify-center mb-4">
+        <Link href="/new-product">
+          <button className='text-sm flex flex-col justify-center px-2 border border-gray-400 hover:border-black cursor-pointer duration-300 h-[95%] rounded-md px-3 py-2 '>
+            Adicionar Novo Produto
+          </button> 
+        </Link>
       </div>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 flex justify-center flex-wrap gap-4 mx-auto max-w-screen-2xl ">
-        {produtos.map(produto => (
+        {filteredProdutos.map(produto => (
           <div key={produto.id_produto} className="flex flex-col items-center rounded-md border border-zinc-500 h-80 w-56">
             <h2 className="text-lg text-center font-semibold p-4">{produto.nome_produto}</h2>
             <Image
               src={produto.imagem_produto}
-              height={100}
-              width={100}
+              height={70}
+              width={70}
               alt={produto.nome_produto}
               className=""
             />
@@ -84,14 +95,8 @@ const Home = () => {
               </>
             ) : (
               <>
-                <button onClick={() => handleEditProduto(produto.id_produto)} className={`
-                  bg-yellow-500 h-7 w-3/4 border-none text-white 
-                  text-base font-bold rounded-md mt-2
-                `}>Editar</button>
-                <button onClick={() => setProdutoToDelete(produto.id_produto)} className={`
-                  bg-red-500 h-7 w-3/4 border-none text-white 
-                  text-base font-bold rounded-md mt-2
-                `}>Deletar</button>
+                <button onClick={() => handleEditProduto(produto.id_produto)} className="bg-yellow-500 h-7 w-3/4 border-none text-white text-base font-bold rounded-md mt-2">Editar</button>
+                <button onClick={() => setProdutoToDelete(produto.id_produto)} className="bg-red-500 h-7 w-3/4 border-none text-white text-base font-bold rounded-md mt-2">Deletar</button>
               </>
             )}
           </div>

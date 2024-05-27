@@ -35,7 +35,7 @@ const NewProduct = () => {
 
   return (
     <main>
-      <Header/>
+      
     <div style={{ maxWidth: '600px', margin: '0 auto' }}> 
       <div><h1 className="flex justify-center flex-wrap gap-4 mx-auto max-w-screen-2xl text-2xl font-bold text-Azul ">CADASTRO DE PRODUTO</h1></div>
       <form onSubmit={handleSubmit}>
