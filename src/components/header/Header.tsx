@@ -53,7 +53,7 @@ export default function Header({ searchTerm, setSearchTerm, resetFilters }: Head
         </div>
    
         <button className="flex items-center px-2 border border-transparent hover:border-white cursor-pointer duration-300 h-[95%] relative">
-          <Link href="/carrinho">
+          <Link href="/carrinho/cart">
             <div>
               <Image className="w-auto object-cover h-8" src={Carrinho} alt="Carrinho" />
             </div>
