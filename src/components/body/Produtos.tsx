@@ -37,26 +37,28 @@ export default function Produtos({ searchTerm, category }: Props) {
 
   const filteredProdutos = produtos.filter(produto =>
     (produto.nome_produto.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      produto.descricao_produto.toLowerCase().includes(searchTerm.toLowerCase()))&&
-      ((category === 'todos') || (produto.tipo_produto.toLowerCase().includes(category.toLowerCase())||
-      produto.descricao_produto.toLowerCase().includes(category.toLowerCase()))) 
+      produto.descricao_produto.toLowerCase().includes(searchTerm.toLowerCase())) &&
+      ((category === 'todos') || (produto.tipo_produto.toLowerCase().includes(category.toLowerCase()) ||
+        produto.descricao_produto.toLowerCase().includes(category.toLowerCase())))
   );
 
   return (
-    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
       {filteredProdutos.map(produto => (
-        <div key={produto.id_produto} className="flex flex-col items-center rounded-md border border-zinc-500 h-80 w-56">
-          <h2 className="text-lg text-center font-semibold p-4">{produto.nome_produto}</h2>
-          <Image
-            src={produto.imagem_produto}
-            height={100}
-            width={100}
-            alt={produto.nome_produto}
-            className=""
-          />
-          <span className="flex justify-between text-center p-4">R${produto.preco_produto}</span>
-          <span className="text-xs">{produto.descricao_produto}</span>
-          <button className="bg-blue-500 h-7 w-3/4 border-none text-white text-base font-bold rounded-md mt-2">Comprar</button>
+        <div key={produto.id_produto} className="flex flex-col items-center rounded-md border border-zinc-500 h-80 w-56 overflow-hidden transition-transform duration-300 transform hover:scale-105">
+          <div className="flex flex-col items-center">
+            <h2 className="text-lg text-center font-semibold p-4">{produto.nome_produto}</h2>
+            <Image
+              src={produto.imagem_produto}
+              height={110}
+              width={110}
+              alt={produto.nome_produto}
+              className=""
+            />
+            <span className="flex justify-between text-center p-4">R${produto.preco_produto}</span>
+            <span className="text-xs px-4 pb-4">{produto.descricao_produto}</span>
+          </div>
+          <button className="bg-blue-500 hover:bg-green-500 border-none text-white text-base font-bold rounded-md mt-auto w-full px-4 py-2">Comprar</button>
         </div>
       ))}
     </div>

@@ -19,6 +19,7 @@ export default function Home() {
       
       <br />
       <h1 id="Geral" className="flex justify-center flex-wrap gap-4 mx-auto max-w-screen-2xl text-2xl font-bold text-Azul">GERAL</h1>
+      <br />
       <div className="flex justify-center flex-wrap gap-4 mx-auto max-w-screen-2xl">
         <Produtos searchTerm={searchTerm} category={category} />
       </div>
