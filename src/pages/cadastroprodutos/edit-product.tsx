@@ -1,7 +1,8 @@
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useRouter } from 'next/router';
-import Header from '@/components/header/Header';
+import HeaderSimple from '@/components/header/HeaderSimple';
+
 
 const EditProduct = () => {
   const router = useRouter();
@@ -42,15 +43,15 @@ const EditProduct = () => {
     e.preventDefault();
     try {
       await axios.put(`/api/produtos/${id}`, produto);
-      router.push('/');
+      router.push('/cadastroprodutos/cadastra_produtos');
     } catch (error) {
       console.error('Erro ao atualizar produto:', error);
     }
   };
 
   return (
-    <div>
-      
+    <main>
+      <HeaderSimple></HeaderSimple>
       <div className="flex justify-center items-center h-screen bg-gray-100">
         <div className="bg-white p-8 rounded shadow-md w-full max-w-lg">
           <h1 className="text-2xl font-bold mb-6 text-center">Editar Produto</h1>
@@ -127,7 +128,8 @@ const EditProduct = () => {
           </form>
         </div>
       </div>
-    </div>
+
+    </main>
   );
 };
 

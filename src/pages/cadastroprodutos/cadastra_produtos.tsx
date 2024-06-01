@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import axios from 'axios';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
-import Header from "@/components/header/Header";
+import HeaderCadastroProduto from "@/components/header/HeaderCadastroProduto";
 import Link from 'next/link';
 
 interface Produto {
@@ -15,7 +15,7 @@ interface Produto {
   principal_produto: string;
 }
 
-const Home = () => {
+const CadastraProdutos = () => {
   const [produtos, setProdutos] = useState<Produto[]>([]);
   const [searchTerm, setSearchTerm] = useState<string>('');
   const [produtoToDelete, setProdutoToDelete] = useState<number | null>(null);
@@ -54,7 +54,7 @@ const Home = () => {
   };
 
   const handleEditProduto = (id: number) => {
-    router.push(`/edit-product?id=${id}`);
+    router.push(`/cadastroprodutos/edit-product?id=${id}`);
   };
 
   const filteredProdutos = produtos.filter(produto =>
@@ -64,11 +64,12 @@ const Home = () => {
 
   return (
     <main>
-      <Header searchTerm={searchTerm} setSearchTerm={setSearchTerm} resetFilters={resetFilters} />
+      <HeaderCadastroProduto setSearchTerm={setSearchTerm} resetFilters={resetFilters}/>
+
       <div><h1 className="flex justify-center flex-wrap gap-4 mx-auto max-w-screen-2xl text-2xl font-bold text-Azul ">LISTA DE PRODUTOS</h1></div>
       <br></br>
       <div className="flex justify-center mb-4">
-      <Link href="/new-product">
+      <Link href="/cadastroprodutos/new-product">
         <button 
           className='text-sm flex flex-col justify-center px-2 border border-gray-400 hover:border-black cursor-pointer duration-300 h-[95%] rounded-md px-3 py-2 bg-blue-500 text-white hover:bg-green-500 transform hover:scale-110'
         >
@@ -99,7 +100,8 @@ const Home = () => {
             <div className="flex justify-center mt-auto space-x-2"> {/* Contêiner flexível para os botões */}
               {produtoToDelete === produto.id_produto ? (
                 <>
-                  <button onClick={handleDeleteProduto} className="bg-red-500 border-none text-white text-base font-bold rounded-md px-3 py-1">Confirmar</button>
+                  <button onClick={handleDeleteProduto} className="bg-red-500 border-none text-white text-base font-bold rounded-md px-3 py-1">Confirmar
+                  </button>
                   <button onClick={() => setProdutoToDelete(null)} className="bg-gray-500 border-none text-white text-base font-bold rounded-md px-3 py-1">Cancelar</button>
                 </>
               ) : (
@@ -117,4 +119,4 @@ const Home = () => {
   );
 };
 
-export default Home;
+export default CadastraProdutos;

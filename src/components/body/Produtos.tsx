@@ -35,6 +35,10 @@ export default function Produtos({ searchTerm, category }: Props) {
     fetchProdutos();
   }, []);
 
+  const handleProductClick = (id: number) => {
+    router.push(`/product/${id}`);
+  };
+
   const filteredProdutos = produtos.filter(produto =>
     (produto.nome_produto.toLowerCase().includes(searchTerm.toLowerCase()) ||
       produto.descricao_produto.toLowerCase().includes(searchTerm.toLowerCase())) &&
@@ -43,9 +47,13 @@ export default function Produtos({ searchTerm, category }: Props) {
   );
 
   return (
-    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
+    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-4">
       {filteredProdutos.map(produto => (
-        <div key={produto.id_produto} className="flex flex-col items-center rounded-md border border-zinc-500 h-80 w-56 overflow-hidden transition-transform duration-300 transform hover:scale-105">
+        <div 
+          key={produto.id_produto} 
+          className="flex flex-col items-center rounded-md border border-zinc-500 h-80 w-56 overflow-hidden transition-transform duration-300 transform hover:scale-105 cursor-pointer"
+          onClick={() => handleProductClick(produto.id_produto)}
+        >
           <div className="flex flex-col items-center">
             <h2 className="text-lg text-center font-semibold p-4">{produto.nome_produto}</h2>
             <Image

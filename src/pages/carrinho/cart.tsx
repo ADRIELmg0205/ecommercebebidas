@@ -6,7 +6,6 @@ export default function PaginaCart(){
     return(
         <main>
             <Header/>
-            <BottomHeader/>
             <div>
                 <Cart />
             </div>

@@ -1,33 +1,32 @@
 import React, { useState } from 'react';
 import Image from "next/image";
 import logo from "../../images/logo.png";
-import Carrinho from "../../images/Carrinho.png";
 import { HiOutlineSearch } from 'react-icons/hi';
-import { SlLocationPin } from 'react-icons/sl';
 import { SignInButton, SignedIn, SignedOut, UserButton } from '@clerk/nextjs';
-import Link from 'next/link';
 import { useRouter } from 'next/router';
 
-interface HeaderProps {
-  searchTerm?: string;
+interface HeaderSimpleProps {
   setSearchTerm?: (term: string) => void;
   resetFilters?: () => void;
 }
 
-export default function Header({ searchTerm, setSearchTerm, resetFilters }: HeaderProps) {
+export default function HeaderSimple({ setSearchTerm, resetFilters }: HeaderSimpleProps) {
   const router = useRouter();
-  const [localSearchTerm, setLocalSearchTerm] = useState(searchTerm ?? '');
+  const [localSearchTerm, setLocalSearchTerm] = useState('');
 
   const handleSearchSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    router.push(`/?search=${localSearchTerm}`);
+    if (setSearchTerm) {
+      setSearchTerm(localSearchTerm);
+    }
   };
 
   const handleLogoClick = () => {
+    setLocalSearchTerm('')
     if (resetFilters) {
       resetFilters();
     }
-    router.push('/');
+    router.push('/cadastroprodutos/cadastra_produtos');
   };
 
   return (
@@ -52,30 +51,6 @@ export default function Header({ searchTerm, setSearchTerm, resetFilters }: Head
             <HiOutlineSearch />
           </button>
         </form>
-
-        <div className="px-2 border border-transparent hover:border-white cursor-pointer duration-300 flex items-center justify-center h-[95%] text-TextoBranco xl-hidden xl:inline-flex gap-1">
-          <SlLocationPin className="text-white" />
-          <div>
-            <p className="text-white"> Local Entrega </p>
-          </div>
-        </div>
-
-        <div className="text-sm text-white flex flex-col justify-center px-2 border border-transparent hover:border-white cursor-pointer duration-300 h-[95%]">
-          <p className="text-white font-bold"> Favoritos </p>
-        </div>
-
-        <div className="text-sm text-white-100 flex flex-col justify-center px-2 border border-transparent hover:border-white cursor-pointer duration-300 h-[95%]">
-          <p className="text-white font-bold items-center"> Conta </p>
-        </div>
-   
-        <button className="flex items-center px-2 border border-transparent hover:border-white cursor-pointer duration-300 h-[95%] relative">
-          <Link href="/carrinho/cart">
-            <div>
-              <Image className="w-auto object-cover h-8" src={Carrinho} alt="Carrinho" />
-            </div>
-          </Link>
-        </button>
-
         <div className='flex items-center gap-8'>
           <SignedIn>
             <div className="relative">
