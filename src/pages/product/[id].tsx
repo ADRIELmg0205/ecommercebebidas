@@ -76,7 +76,35 @@ const ProductPage = () => {
   };
 
   if (!produto) {
-    return <div>Carregando...</div>;
+    return (
+      <main>
+      <Header></Header>
+      <div style={{
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'center',
+        alignItems: 'center',
+        height: '100vh',
+        backgroundColor: '#f0f0f0',
+      }}>
+        <div style={{
+          border: '16px solid #f3f3f3',
+          borderTop: '16px solid #3498db',
+          borderRadius: '50%',
+          width: '120px',
+          height: '120px',
+          animation: 'spin 2s linear infinite'
+        }}></div>
+        <p style={{ marginTop: '20px', fontSize: '1.5em', color: '#333' }}>Carregando...</p>
+        <style jsx>{`
+          @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+          }
+        `}</style>
+      </div>
+      </main>
+    );
   }
 
   return (
@@ -96,7 +124,6 @@ const ProductPage = () => {
           <div className="md:w-1/2 md:ml-8 mt-4 md:mt-0">
             <h1 className="text-3xl font-bold mb-4">{produto.nome_produto}</h1>
             <p className="text-xl font-semibold text-gray-700 mb-4">R${produto.preco_produto}</p>
-            <p className="text-gray-600 mb-4">{produto.descricao_produto}</p>
             <p className="text-gray-600 mb-4">Tipo: {produto.tipo_produto}</p>
             <div className="flex items-center mb-4">
               <button onClick={decrementQuantity} className="bg-gray-200 text-gray-600 font-bold py-2 px-4 rounded-l">
