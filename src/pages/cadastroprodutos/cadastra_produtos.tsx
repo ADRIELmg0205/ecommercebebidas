@@ -83,7 +83,7 @@ const CadastraProdutos = () => {
         {filteredProdutos.map(produto => (
           <div 
             key={produto.id_produto} 
-            className={`flex flex-col items-center rounded-md border border-zinc-500 h-80 w-56 ${hoveredCard === produto.id_produto ? 'transform scale-110 transition-transform' : ''}`} // Adicionando classe CSS com base no hover
+            className={`flex flex-col items-center rounded-md border border-zinc-500 h-80 w-56 ${hoveredCard === produto.id_produto ? 'transform scale-105 transition-transform' : ''}`} // Adicionando classe CSS com base no hover
             onMouseEnter={() => setHoveredCard(produto.id_produto)} // Define o card atual como hover
             onMouseLeave={() => setHoveredCard(null)} // Limpa o estado de hover ao deixar o card
           >
