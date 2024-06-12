@@ -3,6 +3,7 @@ import { useRouter } from 'next/router';
 import Header from "@/components/header/Header";
 import BottomHeader from "@/components/header/BottomHeader";
 import Produtos from "@/components/body/Produtos";
+import Footer from "@/components/footer/Footer";
 
 export default function Home() {
   const router = useRouter();
@@ -36,6 +37,7 @@ export default function Home() {
         <Produtos searchTerm={searchTerm} category={selectedCategory} />
       </div>
       <br />
+      <Footer></Footer>
     </main>
   );
 }

@@ -4,6 +4,7 @@ import Image from 'next/image';
 import { useRouter } from 'next/router';
 import HeaderCadastroProduto from "@/components/header/HeaderCadastroProduto";
 import Link from 'next/link';
+import Footer from "@/components/footer/Footer";
 
 interface Produto {
   id_produto: number;
@@ -114,7 +115,8 @@ const CadastraProdutos = () => {
             <br></br>
           </div>
         ))}
-      </div>         
+      </div>
+      <Footer></Footer>         
     </main>
   );
 };
