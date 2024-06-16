@@ -3,6 +3,7 @@ import { useRouter } from 'next/router';
 import Header from "@/components/header/Header";
 import BottomHeader from "@/components/header/BottomHeader";
 import Produtos from "@/components/body/Produtos";
+import Carrossel from '@/components/carrossel/Carrossel';
 
 export default function Home() {
   const router = useRouter();
@@ -28,7 +29,7 @@ export default function Home() {
     <main>
       <Header searchTerm={searchTerm} setSearchTerm={setSearchTerm} resetFilters={resetFilters} />
       <BottomHeader setCategory={setSelectedCategory} />
-      
+      <Carrossel />
       <br />
       <h1 id="Geral" className="flex justify-center flex-wrap gap-4 mx-auto max-w-screen-2xl text-2xl font-bold text-Azul">GERAL</h1>
       <br />

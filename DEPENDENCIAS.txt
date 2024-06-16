@@ -13,3 +13,5 @@ npm install @types/axios --save-dev
 npm install pg
 
 npm install @types/pg --save-dev
+
+npm i swiper
