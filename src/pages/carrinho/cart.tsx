@@ -1,6 +1,7 @@
 import Cart from "@/components/carrinho/Cart";
 import BottomHeader from "@/components/header/BottomHeader";
 import Header from "@/components/header/Header";
+import Footer from "@/components/footer/Footer";
 
 export default function PaginaCart(){
     return(
@@ -9,6 +10,7 @@ export default function PaginaCart(){
             <div>
                 <Cart />
             </div>
+            <Footer></Footer> 
         </main>
     )
 }

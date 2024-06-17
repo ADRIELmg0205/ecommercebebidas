@@ -2,6 +2,7 @@ import { useState } from 'react';
 import axios from 'axios';
 import { useRouter } from 'next/router';
 import HeaderSimple from '@/components/header/HeaderSimple';
+import Footer from "@/components/footer/Footer";
 
 const NewProduct = () => {
   const [produto, setProduto] = useState({
@@ -117,6 +118,7 @@ const NewProduct = () => {
           </form>
         </div>
       </div>
+      <Footer></Footer> 
     </main>
   );
 };

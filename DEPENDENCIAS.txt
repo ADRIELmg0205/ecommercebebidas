@@ -15,3 +15,7 @@ npm install pg
 npm install @types/pg --save-dev
 
 npm i swiper
+
+npm install react-modal
+
+npm install --save-dev @types/react-modal
