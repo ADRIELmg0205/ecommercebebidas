@@ -4,6 +4,7 @@ import axios from 'axios';
 import Image from 'next/image';
 import Header from "@/components/header/Header";
 import Link from 'next/link'; // Importar o Link do Next.js
+import Footer from "@/components/footer/Footer";
 
 interface Produto {
   id_produto: number;
@@ -78,31 +79,31 @@ const ProductPage = () => {
   if (!produto) {
     return (
       <main>
-      <Header></Header>
-      <div style={{
-        display: 'flex',
-        flexDirection: 'column',
-        justifyContent: 'center',
-        alignItems: 'center',
-        height: '100vh',
-        backgroundColor: '#f0f0f0',
-      }}>
+        <Header></Header>
         <div style={{
-          border: '16px solid #f3f3f3',
-          borderTop: '16px solid #3498db',
-          borderRadius: '50%',
-          width: '120px',
-          height: '120px',
-          animation: 'spin 2s linear infinite'
-        }}></div>
-        <p style={{ marginTop: '20px', fontSize: '1.5em', color: '#333' }}>Carregando...</p>
-        <style jsx>{`
-          @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-          }
-        `}</style>
-      </div>
+          display: 'flex',
+          flexDirection: 'column',
+          justifyContent: 'center',
+          alignItems: 'center',
+          height: '100vh',
+          backgroundColor: '#f0f0f0',
+        }}>
+          <div style={{
+            border: '16px solid #f3f3f3',
+            borderTop: '16px solid #3498db',
+            borderRadius: '50%',
+            width: '120px',
+            height: '120px',
+            animation: 'spin 2s linear infinite'
+          }}></div>
+          <p style={{ marginTop: '20px', fontSize: '1.5em', color: '#333' }}>Carregando...</p>
+          <style jsx>{`
+            @keyframes spin {
+              0% { transform: rotate(0deg); }
+              100% { transform: rotate(360deg); }
+            }
+          `}</style>
+        </div>
       </main>
     );
   }
@@ -110,9 +111,9 @@ const ProductPage = () => {
   return (
     <main>
       <Header searchTerm={searchTerm} setSearchTerm={setSearchTerm} resetFilters={resetFilters} />
-      <div className="container mx-auto py-8 px-4">
-        <div className="flex flex-col md:flex-row items-center md:items-start">
-          <div className="md:w-1/2">
+      <div className="container mx-auto py-8 px-4 flex flex-col items-center">
+        <div className="flex flex-col md:flex-row items-center md:items-start bg-white p-6 rounded-lg shadow-md w-full md:w-3/4 lg:w-2/3">
+          <div className="relative md:w-1/2">
             <Image
               src={produto.imagem_produto}
               height={300}
@@ -120,6 +121,9 @@ const ProductPage = () => {
               alt={produto.nome_produto}
               className="rounded-md"
             />
+            <button className="absolute top-2 right-2 bg-white rounded-full p-2 shadow-md">
+              ❤️
+            </button>
           </div>
           <div className="md:w-1/2 md:ml-8 mt-4 md:mt-0">
             <h1 className="text-3xl font-bold mb-4">{produto.nome_produto}</h1>
@@ -134,23 +138,25 @@ const ProductPage = () => {
                 +
               </button>
             </div>
-            <button onClick={addToCart} className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mr-4">
-              Adicionar ao Carrinho
-            </button>
-            <button onClick={buyNow} className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">
-              Comprar Agora
-            </button>
+            <div className="flex space-x-4">
+              <button onClick={addToCart} className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+                Adicionar ao Carrinho
+              </button>
+              <button onClick={buyNow} className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">
+                Comprar Agora
+              </button>
+            </div>
           </div>
         </div>
 
-        <div className="mt-12">
+        <div className="mt-12 w-full md:w-3/4 lg:w-2/3">
           <h2 className="text-2xl font-bold mb-4">Descrição do Produto</h2>
           <p className="text-gray-600">{produto.descricao_produto}</p>
         </div>
 
-        <div className="mt-12">
+        <div className="mt-12 w-full md:w-3/4 lg:w-2/3">
           <h2 className="text-2xl font-bold mb-4">Sugestões</h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-4 gap-4">
             {suggestions.map(suggestion => (
               <Link key={suggestion.id_produto} href={`/product/${suggestion.id_produto}`}> {/* Adicionar o link para a página do produto */}
                 <a>
@@ -159,13 +165,12 @@ const ProductPage = () => {
                       <h2 className="text-lg text-center font-semibold p-4">{suggestion.nome_produto}</h2>
                       <Image
                         src={suggestion.imagem_produto}
-                        height={110}
-                        width={110}
+                        height={140}
+                        width={140}
                         alt={suggestion.nome_produto}
                         className=""
                       />
-                      <span className="flex justify-between text-center p-4">R${suggestion.preco_produto}</span>
-                      <span className="text-xs px-4 pb-4">{suggestion.descricao_produto}</span>
+                      <span className="flex justify-between text-center p-6" style={{ fontSize: '18px' }} >R${suggestion.preco_produto}</span>
                     </div>
                     <button className="bg-blue-500 hover:bg-green-500 border-none text-white text-base font-bold rounded-md mt-auto w-full px-4 py-2">
                       Comprar
@@ -177,6 +182,7 @@ const ProductPage = () => {
           </div>
         </div>
       </div>
+      <Footer></Footer>  
     </main>
   );
 };

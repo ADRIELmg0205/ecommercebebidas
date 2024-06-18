@@ -58,13 +58,12 @@ export default function Produtos({ searchTerm, category }: Props) {
             <h2 className="text-lg text-center font-semibold p-4">{produto.nome_produto}</h2>
             <Image
               src={produto.imagem_produto}
-              height={110}
-              width={110}
+              height={140}
+              width={140}
               alt={produto.nome_produto}
               className=""
             />
-            <span className="flex justify-between text-center p-4">R${produto.preco_produto}</span>
-            <span className="text-xs px-4 pb-4">{produto.descricao_produto}</span>
+            <span className="flex justify-between text-center p-6" style={{ fontSize: '18px' }} >R${produto.preco_produto}</span>
           </div>
           <button className="bg-blue-500 hover:bg-green-500 border-none text-white text-base font-bold rounded-md mt-auto w-full px-4 py-2">Comprar</button>
         </div>

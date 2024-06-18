@@ -5,6 +5,7 @@ import { useRouter } from 'next/router';
 import HeaderCadastroProduto from "@/components/header/HeaderCadastroProduto";
 import Link from 'next/link';
 import Footer from "@/components/footer/Footer";
+import Carrossel from '@/components/carrossel/Carrossel';
 
 interface Produto {
   id_produto: number;
@@ -66,6 +67,7 @@ const CadastraProdutos = () => {
   return (
     <main>
       <HeaderCadastroProduto setSearchTerm={setSearchTerm} resetFilters={resetFilters}/>
+      <Carrossel />
 
       <div><h1 className="flex justify-center flex-wrap gap-4 mx-auto max-w-screen-2xl text-2xl font-bold text-Azul ">LISTA DE PRODUTOS</h1></div>
       <br></br>
@@ -91,13 +93,13 @@ const CadastraProdutos = () => {
             <h2 className="text-lg text-center font-semibold p-4">{produto.nome_produto}</h2>
             <Image
               src={produto.imagem_produto}
-              height={90}
-              width={90}
+              height={140}
+              width={140}
               alt={produto.nome_produto}
               className=""
             />
             <span className="flex justify-between text-center p-4">R${produto.preco_produto}</span>
-            <span className="text-xs p-4">{produto.descricao_produto}</span> {/* Adicionando espaçamento interno */}
+
             <div className="flex justify-center mt-auto space-x-2"> {/* Contêiner flexível para os botões */}
               {produtoToDelete === produto.id_produto ? (
                 <>
