@@ -11,10 +11,10 @@ import 'swiper/css/pagination';
 register()
 
 const data = [
-    { id: '1', image: 'https://i.postimg.cc/C5SDKndY/4.png' },
-    { id: '2', image: 'https://i.postimg.cc/rm6xvPkD/3.png' },
-    { id: '3', image: 'https://i.postimg.cc/PxmYhQX2/Design-sem-nome-1.png' },
-    { id: '4', image: 'https://i.postimg.cc/BvP27GdW/2.png' },
+    { id: '1', image: 'https://i.postimg.cc/65tk4JLh/1.png' },
+    { id: '2', image: 'https://i.postimg.cc/SK23bykm/2.png' },
+    { id: '3', image: 'https://i.postimg.cc/sg0qLBFn/3.png' },
+    { id: '4', image: 'https://i.postimg.cc/NfDW1Jdv/4.png' },
 ]
 
 export default function Carrossel() {
